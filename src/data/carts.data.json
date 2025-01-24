@@ -1,0 +1,23 @@
+[
+  {
+    "id": "C7zdxofy",
+    "products": []
+  },
+  {
+    "id": "C7zdxohp",
+    "products": []
+  },
+  {
+    "id": "C7zdxxym",
+    "products": [
+      {
+        "id": "7zdom0e",
+        "quantity": 3
+      },
+      {
+        "id": "7zdrd7m",
+        "quantity": 2
+      }
+    ]
+  }
+]

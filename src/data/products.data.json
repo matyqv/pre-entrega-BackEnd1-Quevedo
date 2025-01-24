@@ -1,0 +1,24 @@
+[
+  {
+    "id": "7zdom0e",
+    "title": "Zapatillas Zelda & link",
+    "description": "zapatillas",
+    "code": "x",
+    "price": "9001",
+    "Status": "true",
+    "stock": "10",
+    "category": "zapatillas",
+    "trumbnails": ""
+  },
+  {
+    "id": "7zdrd7m",
+    "title": "Zapatillas Vegueta",
+    "description": "zapatillas de baskey",
+    "code": "x",
+    "price": "9001",
+    "Status": "true",
+    "stock": "10",
+    "category": "zapatillas",
+    "trumbnails": ""
+  }
+]
