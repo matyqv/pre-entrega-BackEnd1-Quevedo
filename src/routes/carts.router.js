@@ -1,10 +1,11 @@
 import express from "express";
 import fs from "fs";
 import productsRouter from "./products.router.js";
-import { BuscarProdPID } from "./products.router.js";
+import productsManager from "../../public/js/products.js";
 
 const cartRouter=express.Router();
 
+const PM= productsManager;
 
 const productRouter=productsRouter;
 class cartsManager{
@@ -55,7 +56,7 @@ cartRouter.post("/",(req,res)=>{
 
 cartRouter.post("/:cid/products/:pid", (req, res) => {
     const { cid, pid } = req.params;
-    const product = BuscarProdPID(pid);
+    const product = PM.BuscarProdPID(pid);
 
     if(!BuscarCartCID(cid)) {res.status(404).send("El carrito no existe");}
 

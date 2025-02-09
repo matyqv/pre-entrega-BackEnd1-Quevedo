@@ -20,5 +20,25 @@
     "stock": "10",
     "category": "zapatillas",
     "trumbnails": ""
+  },
+  {
+    "id": "7zlsen5",
+    "title": "Castillo de Arena",
+    "code": "CASARE",
+    "status": "on",
+    "stock": "150",
+    "category": "Inmueble",
+    "price": "1630",
+    "description": "Casa de arena tamaño real muy bonita pero de arena, cuidado con el agua"
+  },
+  {
+    "id": "7zlw0s6",
+    "title": "Remera Red Hot Chilli Peppers",
+    "code": "RHCP",
+    "status": "",
+    "stock": "",
+    "category": "",
+    "price": "16300",
+    "description": ""
   }
 ]

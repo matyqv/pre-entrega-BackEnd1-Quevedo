@@ -1,0 +1,26 @@
+<div>
+        <h1 class="text-center text-primary margin-6"  style="margin: 40px 20px;">Productos</h1>
+
+       <div class="container">
+    <div class="row g-3"> <!-- g-3 agrega separación entre tarjetas -->
+        {{#each products}}
+        <div class="col-md-3 d-flex"> <!-- 3 tarjetas por fila -->
+            <div class="card flex-fill" style="width: 18rem;">
+                <div class="card-body d-flex flex-column">
+                    <p class="card-text"> ID: {{this.id}} </p>
+                    <h5 class="card-title">{{this.title}}</h5>
+                    <p class="card-text"> CODE: {{this.code}} </p>
+                    <p class="card-text"> STATUS: {{this.status}} </p>
+                    <p class="card-text"> STOCK: {{this.stock}} </p>
+                    <p class="card-text"> CATEGORY: {{this.category}} </p>
+                    <p class="card-text"> PRICE: ${{this.price}} </p>
+                    <p class="card-text"> DESCRIPTION: {{this.description}} </p>                    
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

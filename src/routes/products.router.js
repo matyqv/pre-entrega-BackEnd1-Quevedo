@@ -1,44 +1,13 @@
 import express from "express";
-import fs from "fs";
-import { title } from "process";
-
+import productsManager from "../../public/js/products.js";
 const productsRouter=express.Router();
-class productsManager{
-    static products=[];
-    static pathFile = "src/data/products.data.json";
 
 
-    static initialize = async () => {
-        try {
-          const fileData = await fs.promises.readFile(this.pathFile, "utf-8");
-          this.products = JSON.parse(fileData);
-          console.log("Datos cargados correctamente!");
-       //   console.log(this.products)
-        } catch (error) {
-          console.error(error);
-        }
-    } 
-
-    static saveProducts = async () => {
-        try {
-          await fs.promises.writeFile(this.pathFile, JSON.stringify(this.products, null, 2), "utf-8");
-        } catch (error) {
-          console.error("Error al guardar usuario en json");
-        }
-      }
-
-    static addObject=(x)=>{
-        this.products.push(x);
-        console.log(this.products); 
-        this.saveProducts();
-    }
-}
-
-
+const PM= productsManager;
 ///         Endpoints
 
 productsRouter.get("/",(req,res)=>{
-    res.status(200).send(productsManager.products);
+    res.status(200).send(PM.products);
 });
 
 productsRouter.get("/:pid",(req,res)=>{    
@@ -53,7 +22,7 @@ productsRouter.post("/",(req,res)=>{
     if(!title || !description || !code || !price || !Status || !stock || !category ) return res.status(400).send({ message: "Error agregar el producto" });
     else {
             const prod={            
-            id: GenerarIDUnica(),
+            id: PM.GenerarIDUnica(),
             title: title,
             description: description,
             code: code,
@@ -63,7 +32,7 @@ productsRouter.post("/",(req,res)=>{
             category: category,
             trumbnails: tumbnails        
         }
-        productsManager.addObject(prod);
+PM.addObject(prod);
         return res.status(200).send({ message: "Objeto agregado Correctamente" });
     }
 });
@@ -78,14 +47,15 @@ productsRouter.put("/:pid",(req,res)=>{
                 return res.status(400).send({ message: "Error agregar el producto" })
             }
         else {
-            BuscarProdPID(pid).title=title;
-            BuscarProdPID(pid).description=description;
-            BuscarProdPID(pid).code=code;
-            BuscarProdPID(pid).price=price;
-            BuscarProdPID(pid).Status=Status;
-            BuscarProdPID(pid).stock=stock;
-            BuscarProdPID(pid).category=category;
-            productsManager.saveProducts();
+            const ProdPID=BuscarProdPID(pid);
+            ProdPID.title=title;
+            ProdPID.description=description;
+            ProdPID.code=code;
+            ProdPID.price=price;
+            ProdPID.Status=Status;
+            ProdPID.stock=stock;
+            ProdPID.category=category;
+    PM.saveProducts();
             return res.status(200).send({ message: "Objeto Modificado Correctamente" });
         }
     }
@@ -98,10 +68,10 @@ productsRouter.put("/:pid",(req,res)=>{
 
 productsRouter.delete("/:pid",(req,res)=>{    
     const {pid} =req.params;
-    const index=productsManager.products.findIndex(x=>x.id===pid);
+    const index=PM.products.findIndex(x=>x.id===pid);
     if(BuscarProdPID(pid)) {
-         productsManager.products.splice(index,1);
-         productsManager.saveProducts();
+ PM.products.splice(index,1);
+ PM.saveProducts();
         res.status(200).send("producto eliminado correctamente");
     }
     else{res.status(400).send("El producto no existe");}
@@ -109,24 +79,14 @@ productsRouter.delete("/:pid",(req,res)=>{
 
     //      funciones auxiliares        //          //
     const BuscarProdPID=(pid)=>{
-    const product=productsManager.products
+    const product=PM.products
     const indexBuscado= product.findIndex(prod=> prod.id===pid)
     const productoBuscado=product[indexBuscado];
     return productoBuscado;
     }
 
-    const SegundosAbsolutosDeFecha=()=> {
-        const now = new Date(); // Fecha actual
-        const seconds = Math.floor(now.getTime() / 100); // Convertir a milisegundos y luego a segundos
-        return seconds;
-    }
-    
-    const GenerarIDUnica=()=>{
-        const seconds = SegundosAbsolutosDeFecha(); // Obtener los segundos actuales
-        const alphanumericId = seconds.toString(36); // Convertir los segundos a base 36
-        return alphanumericId;
-    }
-productsManager.initialize();
 
-export { productsManager,BuscarProdPID };
+PM.initialize();
+
+export { PM,BuscarProdPID };
 export default productsRouter;

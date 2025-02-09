@@ -1,0 +1,45 @@
+<div>
+        <div class="container">
+                <h1 class="text-center text-primary margin-6" style="margin: 40px 20px;">Productos</h1>
+                <div class="row">
+                        <div class="col-3 p-3">
+
+                                <form id="form" class="gap-3 card" style="padding: 25px">
+                                        <input type="text" id="title" class="form-control" name="title"
+                                                placeholder="Ingrese Nombre Producto">
+                                        <input type="text" id="code" class="form-control" name="code"
+                                                placeholder="Codigo de su producto">
+                                        <input type="text" id="Status" class="form-control" name="Status"
+                                                placeholder="estatus de su producto">
+                                        <input type="number" id="stock" class="form-control" name="stock"
+                                                placeholder="Stock actual del producto">
+                                        <input type="text" id="category" class="form-control" name="category"
+                                                placeholder="Categoria del producto">
+                                        <input type="number" id="price" class="form-control" name="price"
+                                                placeholder="Precio del producto">
+                                        <input type="text" id="description" class="form-control" name="description"
+                                                placeholder="Describa el producto">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                        </div>
+                        <div class="col-9 p-3">
+
+
+                                <ul class="container">
+                                        <div id="lista-productos" class="row g-3" id="productos-row">
+
+                                        </div> <!-- Aquí se insertarán las tarjetas -->
+                                </ul>
+
+                        </div>
+                </div>
+        </div>
+
+
+
+
+        </li>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/realTimeProducts.js"></script>
